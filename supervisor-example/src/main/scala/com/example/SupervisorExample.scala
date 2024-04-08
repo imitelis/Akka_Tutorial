@@ -23,32 +23,54 @@ object SupervisorExample extends App {
         context.children.foreach(_ ! PrintSignal(n))
     }
 
-    override val SupervisorStrategy = OneForOneStrategy(loggingEnable = false) {
+    override val supervisorStrategy = OneForOneStrategy(loggingEnabled = false) {
       case ae:ArithmeticException => Resume // <- several types of strategy operations
       case _:Exception => Restart
-      case BadStuff => throw new RuntimeException("Stuff happened")
     }
   }
 
   class ChildActor extends Actor {
+    println("Child created")
     def receive = {
       case PrintSignal(n) => println(n + "" +self)
       case DivideNumbers(n, d) => println(n/d)
+      case BadStuff => throw new RuntimeException("Stuff happened")
+    }
+
+    override def preStart() = {
+      super.preStart()
+      println("preStart")
+    }
+
+    override def postStop() = {
+      super.postStop()
+      println("postStop")
+    }
+
+    override def preRestart(reason: Throwable, message:Option[Any]) = {
+      super.preRestart(reason, message)
+      println("preRestart")
+    }
+
+    override def postRestart(reason: Throwable) = {
+      super.postRestart(reason)
+      println("postRestart")
     }
   }
 
-  val system = ActorSystem("Hierarchy-System")
+  val system = ActorSystem("Supervisor-System")
   val actor = system.actorOf(Props[ParentActor], "supervisor-actor")
 
   actor ! CreateChild
-  actor ! CreateChild
+  // actor ! CreateChild
 
-  val child0 = system.actorSelection("akka://Hierarchy-System/user/supervisor-actor/child-0")
+  val child0 = system.actorSelection("akka://Supervisor-System/user/supervisor-actor/child-0")
 
   child0 ! DivideNumbers(4, 0) // <- zero division error
-  child0 ! DivideNumbers(4, 2) // <- but this one shows
+  child0 ! DivideNumbers(4, 2) // <- but this one works
   child0 ! BadStuff
-
+  
+  // various types of strategy
   // one for one strategy
   // all for one strategy
   
