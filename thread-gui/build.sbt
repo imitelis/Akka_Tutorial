@@ -1,4 +1,4 @@
-name := "countdown-actors"
+name := "thread-gui"
 
 version := "1.0"
 
@@ -19,4 +19,5 @@ libraryDependencies ++= Seq(
   "ch.qos.logback" % "logback-classic" % "1.2.13",
   "com.typesafe.akka" %% "akka-actor-testkit-typed" % akkaVersion % Test,
   "org.scalatest" %% "scalatest" % "3.2.15" % Test,
+  "org.scalafx" %% "scalafx" % "21.0.0-R32"
 )

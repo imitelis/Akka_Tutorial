@@ -1,4 +1,4 @@
-name := "scala-akka"
+name := "hierarchy-example"
 
 version := "1.0"
 

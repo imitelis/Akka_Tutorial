@@ -1,4 +1,4 @@
-name := "scala-akka"
+name := "scheduler-example"
 
 version := "1.0"
 

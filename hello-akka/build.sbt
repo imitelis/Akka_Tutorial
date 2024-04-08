@@ -1,4 +1,4 @@
-name := "scala-akka"
+name := "hello-akka"
 
 version := "1.0"
 

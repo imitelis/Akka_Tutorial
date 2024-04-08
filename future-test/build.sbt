@@ -1,4 +1,4 @@
-name := "countdown-actors"
+name := "future-test"
 
 version := "1.0"
 

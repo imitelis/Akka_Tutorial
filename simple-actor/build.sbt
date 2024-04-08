@@ -1,4 +1,4 @@
-name := "scala-akka"
+name := "simple-actor"
 
 version := "1.0"
 

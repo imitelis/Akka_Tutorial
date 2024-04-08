@@ -1,4 +1,4 @@
-name := "scala-akka"
+name := "ask-pattern"
 
 version := "1.0"
 

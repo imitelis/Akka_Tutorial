@@ -1,4 +1,4 @@
-name := "scala-akka"
+name := "supervisor-example"
 
 version := "1.0"
 
