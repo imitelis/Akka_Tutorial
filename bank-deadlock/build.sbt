@@ -1,4 +1,4 @@
-name := "scala-akka"
+name := "bank-deadlock"
 
 version := "1.0"
 
@@ -19,5 +19,5 @@ libraryDependencies ++= Seq(
   "ch.qos.logback" % "logback-classic" % "1.2.13",
   "com.typesafe.akka" %% "akka-actor-testkit-typed" % akkaVersion % Test,
   "org.scalatest" %% "scalatest" % "3.2.15" % Test,
-  "com.typesafe.akka" %% "akka-http" % akkaVersion,
+  "org.scala-lang.modules" %% "scala-parallel-collections" % "1.0.0"
 )
